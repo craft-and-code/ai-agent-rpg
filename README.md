@@ -119,7 +119,23 @@ This feature is not yet implemented but is planned for a future update. It will 
 
 ## ⚙️ Adjusting Generation Settings
 
-Embedding generation uses the model defined in `./config/model.js`, with `nomic-embed-text` currently set as the default.
+You can tune model behavior in `ollama.js`, and define the default model name in `config/model.js`.
+Embedding generation uses `nomic-embed-text` as the default embedding model, served by Ollama.
+
+```
+const response = await axios.post('http://localhost:11434/api/generate', {
+  model: 'gemma3:12b-it-qat',
+  prompt,
+  stream: false,
+  temperature: 0.2,
+  top_k: 40,
+  top_p: 0.9,
+  repeat_penalty: 1.2,
+  num_predict: 512
+});
+```
+
+The constants in `config/model.js` ensures consistent use across scripts.
 
 ### ✅ Tips
 
